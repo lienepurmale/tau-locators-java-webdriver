@@ -10,19 +10,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
 public class SimpleWebTest {
 
-    private WebDriver driver;
     private WebDriverWait wait;
+
+    private WebDriver driver;
+
 
     @BeforeEach
     public void initWebDriver() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\liene\\Desktop\\tau-locators-java-webdriver\\src\\main\\chromedriver.exe");
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 5);
     }
 
     @Test
@@ -39,9 +43,11 @@ public class SimpleWebTest {
         WebElement searchButton = driver.findElement(By.id("search_button_homepage"));
         searchButton.click();
 
+
         // Wait for results to appear
         wait.until(ExpectedConditions.titleContains("giant panda"));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.results_links_deep a.result__a")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ikg2IXiCD14iVX7AdZo1")));
+
 
         // Make sure each result contains the word "panda"
         List<WebElement> resultLinks = driver.findElements(By.cssSelector("div.results_links_deep a.result__a"));
